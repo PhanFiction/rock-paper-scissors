@@ -5,6 +5,11 @@
     --header: #111720;
     --primary-font-color: white;
     --box-color: rgb(50, 44, 44);
+    --box-color-hover: rgb(61, 58, 58);
+}
+
+html {
+    font-size: 62.5%; /*This makes the font size easier to use with rem. 62.5 = 10px. 1.4rem = 14px*/
 }
 
 body {
@@ -20,44 +25,67 @@ h1,h2,h3,h4,h5,h6,p {
     color: var(--primary-font-color);
 }
 
+img {
+    width: 100%;
+    height: 100%;
+}
+
 h2,h3 {
-    font-size: 1.8em;
     font-weight: bold;
+    text-align: center;
+    line-height: 1.3em;
+}
+
+h2 {
+    font-size: 3.5rem;
+}
+
+h3 {
+    font-size: 3rem;
+    font-weight: lighter;
 }
 
 #header {
     text-align: center;
     background-color: var(--header);
     color: var(--primary-font-color);
-    padding: 15px;
-    font-size: 1.5em;
+    padding: 2.5em;
+    font-size: 2rem;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1em;
-    margin: 2em;
+    padding: 2em;
 }
 
 .scoreboard {
     display: flex;
-    padding: 15px;
-    align-items: center;
-    text-align: center;
+    height: 15em;
+    margin: 3.5em;
 }
 
-.score, .box {
-    width: 250px;
-    margin: 15px;
+.score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4.5em;
+    padding-right: 4.5em;
+}
+
+.box {
+    width: 14em;
 }
 
 .score > p {
-    font-size: 2em;
+    display: inline-block;
+    margin-top: 0.8em;
+    font-size: 2rem;
     font-weight: bold;
+    height: 0.1em;
 }
-
 
 .question-mark {
     font-size: 12em;
@@ -66,16 +94,86 @@ h2,h3 {
 
 .weapons { 
     display: flex;
-    align-items: center;
+    margin-top: 4em;
+}
+
+.weapon {
+    background-color: var(--box-color);
+    margin: 1em;
+    padding: 1.5em;
+    min-height: 8em;
+}
+
+.weapon:hover {
+    background-color: var(--box-color-hover);
 }
 
 .img {
-    max-width: 175px;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    min-height: 100%;
 }
 
-#box {
+.overlay {
+    display: flex;
+    background-color: rgba(24, 22, 22, 0.62);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.win, .lose {
     display: flex;
     justify-content: center;
-    background-color: var(--box-color);
-    height: 150px;
+    align-items: center;
+    flex-direction: column;
+    margin: 5em;
+}
+
+.result {
+    background-color: var(--primary-dark);
+    width: 30vw;
+    padding: 5em;
+    border-radius: 3em;
+}
+
+.button {
+    width: 10vw;
+    padding: 1em;
+    margin: 3rem;
+}
+
+@media (max-width: 50em) {
+    #header {
+        font-size: 1.5rem;
+    }
+    h2 {
+        font-size: 3rem;
+    }
+    h3 {
+        font-size: 2rem;
+    }
+
+    .box {
+        width: 7em;
+    }
+
+    .score > p {
+        font-size: 2.3rem;
+        white-space: nowrap;
+    }
+
+    .score > img {
+        width: 150%;
+        max-height: 50%;
+    }
+
+    .question-mark {
+        font-size: 9em;
+    }
 }
