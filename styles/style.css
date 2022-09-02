@@ -116,7 +116,7 @@ h3 {
 }
 
 .overlay {
-    display: flex;
+    display: none;
     background-color: rgba(24, 22, 22, 0.62);
     position: fixed;
     top: 0;
@@ -128,7 +128,7 @@ h3 {
 }
 
 .win, .lose {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -142,10 +142,17 @@ h3 {
     border-radius: 3em;
 }
 
+.result > p {
+    font-size: 3rem;
+    margin-bottom: 0.5em;
+}
+
 .button {
-    width: 10vw;
     padding: 1em;
-    margin: 3rem;
+    margin: 1rem;
+    border-radius: 0.8em;
+    font-size: 1.4rem;
+    font-weight: bolder;
 }
 
 @media (max-width: 50em) {
@@ -175,5 +182,9 @@ h3 {
 
     .question-mark {
         font-size: 9em;
+    }
+
+    .button {
+        font-size: 1.25rem;
     }
 }

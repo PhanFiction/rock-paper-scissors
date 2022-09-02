@@ -34,40 +34,66 @@ function getComputerChoice() {
   return enemyWeapon;
 }
 
-function playerScore() {
+function playerScoreUp() {
   const pScore = document.getElementById('playerScore');
   const newPlayerScore = document.createElement('p');
+
+  playerPoints += 1;
+  if(playerPoints === 5) gameOver('win');
+
   newPlayerScore.id = "playerScore";
-  newPlayerScore.innerHTML = `Player: ${playerPoints++}`;
+  newPlayerScore.innerText = `Player: ${playerPoints}`;
   pScore.parentNode.replaceChild(newPlayerScore, pScore);
 }
 
-function enemyScore() {
+function enemyScoreUp() {
   const eScore = document.getElementById('enemyScore');
   const newEnemyScore = document.createElement('p');
+
+  enemyPoints += 1;
+  if(enemyPoints === 5) gameOver('lose');
+  
   newEnemyScore.id = "enemyScore";
-  newEnemyScore.innerHTML = `Enemy: ${enemyPoints++}`;
+  newEnemyScore.innerText = `Enemy: ${enemyPoints}`;
   eScore.parentNode.replaceChild(newEnemyScore, eScore);
 }
 
+function playAgain() {
+
+}
+
+function gameOver(outcome) {
+  const overlay = document.querySelector('.overlay');
+  const win = document.querySelector('.win');
+  const lose = document.querySelector('.lose');
+  overlay.style.display = 'flex';
+
+  if(outcome === 'win') {
+    win.style.display = 'flex';
+  }else {
+    lose.style.display = 'flex';
+  }
+}
+
 function playRound(playerWeapon, computerSelection) {
+  // console.log(playerPoints, enemyPoints);
   // your code here!
   // check to see if points are less than 5
-  if(playerPoints < 5 || enemyPoints < 5) {
+  if(playerPoints < 5 && enemyPoints < 5) {
     // if playerWeapon not the same as computerWeapon, continue on
     if(playerWeapon !== computerSelection) {
       if(playerWeapon === 'rock' && computerSelection === 'scissors') {
-        playerScore();
+        playerScoreUp();
       }else if(playerWeapon === 'scissors' && computerSelection === 'rock') {
-        enemyScore();
+        enemyScoreUp();
       }else if(playerWeapon === 'paper' && computerSelection === 'rock'){
-        playerScore()
+        playerScoreUp();
       }else if(playerWeapon === 'rock' && computerSelection === 'paper'){
-        enemyScore();
+        enemyScoreUp();
       }else if(playerWeapon === 'scissors' && computerSelection === 'paper') {
-        playerScore();
+        playerScoreUp();
       }else {
-        enemyScore();
+        enemyScoreUp();
       }
     }
   }
