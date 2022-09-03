@@ -8,7 +8,6 @@
         <script src="https://kit.fontawesome.com/ae99e8ead0.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <script src="./scripts/index.js"></script>
         <main>
             <header id="header">
                 <h1>Rock Paper Scissors</h1>
@@ -27,13 +26,13 @@
                     </div>
                 </div>
                 <div class="weapons">
-                    <div class="box weapon" onClick="selectWeapon('rock')"">
+                    <div class="box weapon" id="rock">
                         <img class="img" src="./assets/rock.png" alt="rock">
                     </div>
-                    <div class="box weapon" onClick="selectWeapon('paper')">
+                    <div class="box weapon" id="paper">
                         <img class="img" src="./assets/paper.png" alt="paper">
                     </div>
-                    <div class="box weapon" onClick="selectWeapon('scissors')">
+                    <div class="box weapon" id="scissors">
                         <img class="img" src="./assets/scissors.png" alt="scissors">
                     </div>
                 </div>
@@ -41,17 +40,18 @@
             <div class="overlay">
                 <div class="win result">
                     <p>You Win</p>
-                    <button class="button">
+                    <button class="button" id="btn">
                         Play again
                     </button>
                 </div>
                 <div class="lose result">
                     <p>You Lost</p>
-                    <button class="button">
+                    <button class="button" id="btn">
                         Play again
                     </button>
                 </div>
             </div>
         </main>
+        <script src="./scripts/index.js"></script>
     </body>
 </html>

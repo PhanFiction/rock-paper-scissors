@@ -1,10 +1,20 @@
 let enemyPoints = 0;
 let playerPoints = 0;
 
+const overlay = document.querySelector('.overlay');
+const win = document.querySelector('.win');
+const lose = document.querySelector('.lose');
+
+document.querySelector('#rock').addEventListener('click', () => selectWeapon('rock'));
+document.querySelector('#paper').addEventListener('click', () => selectWeapon('paper'));
+document.querySelector('#scissors').addEventListener('click', () => selectWeapon('scissors'));
+document.querySelectorAll('button').forEach((button) => {
+  button.addEventListener('click', ()=> playAgain());
+});
+
 function selectWeapon(weapon) {
   playerSelection(weapon);
-  let enemySelection = getComputerChoice();
-  playRound(weapon, enemySelection);
+  playRound(weapon, getComputerChoice());
 }
 
 function playerSelection(weapon){
@@ -12,8 +22,7 @@ function playerSelection(weapon){
   const newPlayerWeapon = document.createElement('img');
   newPlayerWeapon.src = `./assets/${weapon}.png`;
   newPlayerWeapon.alt = `${weapon}.png`;
-  newPlayerWeapon.classList = "img";
-  newPlayerWeapon.classList = "player-choice"
+  newPlayerWeapon.classList = "img player-choice";
   playerChoice.parentNode.replaceChild(newPlayerWeapon, playerChoice);
 }
 
@@ -27,45 +36,58 @@ function getComputerChoice() {
   const newEnemyWeapon = document.createElement('img');
   newEnemyWeapon.src = `./assets/${enemyWeapon}.png`;
   newEnemyWeapon.alt = `${enemyWeapon}.png`;
-  newEnemyWeapon.classList = "img";
-  newEnemyWeapon.classList = "enemy-choice"
+  newEnemyWeapon.classList = "img enemy-choice";
   enemyChoice.parentNode.replaceChild(newEnemyWeapon, enemyChoice);
 
   return enemyWeapon;
 }
 
 function playerScoreUp() {
-  const pScore = document.getElementById('playerScore');
-  const newPlayerScore = document.createElement('p');
+  const playerScore = document.getElementById('playerScore');
 
   playerPoints += 1;
   if(playerPoints === 5) gameOver('win');
 
-  newPlayerScore.id = "playerScore";
-  newPlayerScore.innerText = `Player: ${playerPoints}`;
-  pScore.parentNode.replaceChild(newPlayerScore, pScore);
+  playerScore.innerText = `Player: ${playerPoints}`;
 }
 
 function enemyScoreUp() {
-  const eScore = document.getElementById('enemyScore');
-  const newEnemyScore = document.createElement('p');
+  const enemyScore = document.getElementById('enemyScore');
 
   enemyPoints += 1;
   if(enemyPoints === 5) gameOver('lose');
   
-  newEnemyScore.id = "enemyScore";
-  newEnemyScore.innerText = `Enemy: ${enemyPoints}`;
-  eScore.parentNode.replaceChild(newEnemyScore, eScore);
+  enemyScore .innerText = `Enemy: ${enemyPoints}`;
 }
 
 function playAgain() {
+  const playerChoice = document.querySelector('.player-choice');
+  const resetPlayerScore = document.querySelector('#playerScore');
+  const resetPlayerWeapon = document.createElement('i');
 
+  resetPlayerScore.innerText = 'Player: 0';
+  resetPlayerWeapon.classList = 'fa-solid fa-question question-mark player-choice';
+  playerChoice.parentNode.replaceChild(resetPlayerWeapon, playerChoice);
+
+  const enemyChoice = document.querySelector('.enemy-choice');
+  const resetEnemyScore = document.querySelector('#enemyScore');
+  const resetEnemyWeapon = document.createElement('i');
+
+  resetEnemyScore.innerText = 'Enemy: 0';
+  resetEnemyWeapon.classList = 'fa-solid fa-question question-mark enemy-choice';
+  enemyChoice.parentNode.replaceChild(resetEnemyWeapon, enemyChoice);
+
+  // remove overlay and play again button
+  overlay.style.display = 'none';
+  win.style.display = 'none';
+  lose.style.display = 'none';
+
+  // reset both player and enemy points
+  enemyPoints = 0;
+  playerPoints = 0;
 }
 
 function gameOver(outcome) {
-  const overlay = document.querySelector('.overlay');
-  const win = document.querySelector('.win');
-  const lose = document.querySelector('.lose');
   overlay.style.display = 'flex';
 
   if(outcome === 'win') {
